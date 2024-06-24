@@ -7,6 +7,7 @@ import olLayerImage from 'ol/layer/Image.js';
 import olLayerTile from 'ol/layer/Tile.js';
 import olMap from 'ol/Map.js';
 import {OLCS_ION_TOKEN} from './_common.js';
+import { XYZ } from 'ol/source.js';
 
 const imageWMSSource = new olSourceImageWMS({
   url: 'https://ahocevar.com/geoserver/wms',
@@ -18,7 +19,11 @@ Cesium.Ion.defaultAccessToken = OLCS_ION_TOKEN;
 const ol2d = new olMap({
   layers: [
     new olLayerTile({
-      source: new olSourceOSM()
+      source: new XYZ({
+        url:
+        'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+        'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      }),
     }),
     new olLayerImage({
       extent: [-13884991, 2870341, -7455066, 6338219],

@@ -8,6 +8,7 @@ import olMap from 'ol/Map.js';
 import {get as getProjection} from 'ol/proj.js';
 import './_proj21781.js';
 import {OLCS_ION_TOKEN} from './_common.js';
+import { XYZ } from 'ol/source.js';
 
 const customProjSource = new olSourceImageWMS({
   attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
@@ -24,7 +25,11 @@ Cesium.Ion.defaultAccessToken = OLCS_ION_TOKEN;
 const ol2d = new olMap({
   layers: [
     new olLayerTile({
-      source: new olSourceOSM()
+      source: new XYZ({
+        url:
+        'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+        'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      }),
     }),
     new olLayerImage({
       source: customProjSource

@@ -6,12 +6,17 @@ import olSourceOSM from 'ol/source/OSM.js';
 import olLayerTile from 'ol/layer/Tile.js';
 import olMap from 'ol/Map.js';
 import {OLCS_ION_TOKEN} from './_common.js';
+import { XYZ } from 'ol/source.js';
 
 Cesium.Ion.defaultAccessToken = OLCS_ION_TOKEN;
 const ol2d = new olMap({
   layers: [
     new olLayerTile({
-      source: new olSourceOSM()
+      source: new XYZ({
+        url:
+        'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+        'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      }),
     })
   ],
   controls: olControlDefaults({
