@@ -14,7 +14,7 @@ const ol2d = new olMap({
     new olLayerTile({
       source: new XYZ({
         url:
-          'http://10.70.36.80/gismap/satellite/{z}/{x}/{y}.jpg',
+          '',
       }),
     })
   ],
