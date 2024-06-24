@@ -6,12 +6,16 @@ import olSourceOSM from 'ol/source/OSM.js';
 import olLayerTile from 'ol/layer/Tile.js';
 import olMap from 'ol/Map.js';
 import {OLCS_ION_TOKEN} from './_common.js';
+import { XYZ } from 'ol/source.js';
 
 Cesium.Ion.defaultAccessToken = OLCS_ION_TOKEN;
 const ol2d = new olMap({
   layers: [
     new olLayerTile({
-      source: new olSourceOSM()
+      source: new XYZ({
+        url:
+          'http://10.70.36.80/gismap/satellite/{z}/{x}/{y}.jpg',
+      }),
     })
   ],
   controls: olControlDefaults({
@@ -21,7 +25,7 @@ const ol2d = new olMap({
   }),
   target: 'map',
   view: new olView({
-    center: transform([25, 20], 'EPSG:4326', 'EPSG:3857'),
+    center: transform([122, 41], 'EPSG:4326', 'EPSG:3857'),
     zoom: 3
   })
 });
